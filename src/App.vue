@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen bg-gray-900 overflow-hidden relative select-none font-sans">
-    <Analytics />
     <!-- Background Texture -->
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/felt.png')] bg-green-800 opacity-80 pointer-events-none"></div>
     <div class="absolute inset-0 bg-radial-gradient pointer-events-none"></div>
@@ -133,7 +132,6 @@ import Controls from './components/Controls.vue';
 import RoundResult from './components/RoundResult.vue';
 import GameOver from './components/GameOver.vue';
 import GameMenu from './components/GameMenu.vue';
-import { Analytics } from "@vercel/analytics/next"
 
 const game = useGameStore();
 
