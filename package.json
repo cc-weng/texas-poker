@@ -9,14 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "echarts": "^5.5.0",
     "element-plus": "^2.10.2",
-    "vue": "^3.5.17",
-    "pinia": "^2.1.7",
     "howler": "^2.2.4",
     "lodash": "^4.17.21",
-    "echarts": "^5.5.0"
+    "pinia": "^2.1.7",
+    "vue": "^3.5.17"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
