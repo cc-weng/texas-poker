@@ -11,10 +11,19 @@
         <div class="text-xs text-gray-300">盲注: ${{ game.smallBlind }} / ${{ game.bigBlind }}</div>
       </div>
       
-      <!-- Game Log (Collapsible or fixed small box) -->
-      <div class="bg-black/40 backdrop-blur-md rounded-lg p-2 w-64 max-h-40 overflow-y-auto pointer-events-auto text-xs text-gray-200 scrollbar-hide">
-        <div v-for="(log, i) in game.logs" :key="i" class="mb-1">
-          <span class="text-gray-400">[{{ log.time }}]</span> {{ log.message }}
+      <!-- 右侧：菜单 + 日志 -->
+      <div class="flex items-start gap-2 pointer-events-auto">
+        <!-- 游戏菜单 -->
+        <GameMenu 
+          v-if="game.players.length > 0"
+          @restart="handleRestart" 
+          @settle="handleSettle" 
+        />
+        <!-- Game Log (Collapsible or fixed small box) -->
+        <div class="bg-black/40 backdrop-blur-md rounded-lg p-2 w-48 md:w-64 max-h-40 overflow-y-auto text-xs text-gray-200 scrollbar-hide hidden md:block">
+          <div v-for="(log, i) in game.logs" :key="i" class="mb-1">
+            <span class="text-gray-400">[{{ log.time }}]</span> {{ log.message }}
+          </div>
         </div>
       </div>
     </div>
@@ -122,6 +131,7 @@ import CommunityCards from './components/CommunityCards.vue';
 import Controls from './components/Controls.vue';
 import RoundResult from './components/RoundResult.vue';
 import GameOver from './components/GameOver.vue';
+import GameMenu from './components/GameMenu.vue';
 
 const game = useGameStore();
 
@@ -142,6 +152,16 @@ function startGame(count) {
 
 function handleAction(action, amount) {
   game.playerAction(action, amount);
+}
+
+// 重新开始游戏
+function handleRestart() {
+  game.restartGame(game.players.length || 6);
+}
+
+// 立即结算
+function handleSettle() {
+  game.settleNow();
 }
 
 // Calculate positions for an ellipse

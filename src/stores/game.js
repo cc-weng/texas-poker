@@ -487,6 +487,42 @@ export const useGameStore = defineStore('game', {
 
     nextHand() {
       this.startNewHand();
+    },
+
+    // 立即结算：比较当前筹码，筹码最多者获胜
+    settleNow() {
+      const human = this.players.find(p => p.isHuman);
+      if (!human) return;
+
+      // 找出筹码最多的玩家
+      const maxChips = Math.max(...this.players.map(p => p.chips));
+      
+      // 如果人类玩家筹码最多（包括并列第一），则视为胜利
+      if (human.chips >= maxChips && human.chips > 0) {
+        this.gameOverType = 'WIN';
+      } else {
+        this.gameOverType = 'LOSE';
+      }
+      
+      this.addLog('游戏已结算');
+    },
+
+    // 重新开始游戏
+    restartGame(playerCount = 6) {
+      // 重置所有游戏状态
+      this.gameStage = GAME_STAGES.IDLE;
+      this.communityCards = [];
+      this.pot = 0;
+      this.currentBet = 0;
+      this.currentPlayerIndex = -1;
+      this.winners = [];
+      this.roundResult = null;
+      this.showRoundResult = false;
+      this.gameOverType = null;
+      
+      // 重新初始化游戏
+      this.initGame(playerCount);
+      this.startNewHand();
     }
   }
 });
