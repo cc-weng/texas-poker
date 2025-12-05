@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "echarts": "^5.5.0",
     "element-plus": "^2.10.2",
     "howler": "^2.2.4",
