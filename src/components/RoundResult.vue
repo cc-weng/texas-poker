@@ -31,7 +31,7 @@
               <div class="text-xs text-yellow-300 bg-yellow-900/50 px-2 py-0.5 rounded border border-yellow-700/50">{{ winner.handRank }}</div>
             </div>
             <div class="flex gap-1">
-               <Card v-for="(card, ci) in winner.cards" :key="ci" :card="card" :hidden="false" class="w-8 h-11 shadow-sm" />
+               <Card v-for="(card, ci) in winner.cards" :key="ci" :card="card" :hidden="false" class="w-10 h-14 shadow-sm" />
             </div>
             <div class="text-yellow-400 font-mono font-bold">+{{ winner.winAmount }}</div>
           </div>
